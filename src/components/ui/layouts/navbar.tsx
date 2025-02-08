@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <nav className="flex justify-between w-3/4 mx-auto p-4">
       <div>
-        <h3 className="text-violet-500 text-2xl font-semibold">NavBar</h3>
+        <h3 className="text-green-500 text-2xl font-semibold">NavBar</h3>
       </div>
       <div>
         <ul className="flex gap-4 items-center">
