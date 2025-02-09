@@ -8,7 +8,17 @@ export interface IInitialState {
 }
 
 const initialState: IInitialState = {
-  tasks: [],
+  tasks: [
+    {
+      id: "_zFdtIR6GF9FdfueIFVVz",
+      isComplete: false,
+      title: "What is programming",
+      description:
+        "Programming is the process of giving instructions to a computer to perform specific tasks. It involves writing code using programming languages like Python, Java, or C++. These instructions tell the computer how to process data, solve problems, and execute commands. Programming is used to create software, websites, mobile apps, games, and much more. Essentially, it’s a way for humans to communicate with computers and make them work efficiently.",
+      priority: "low",
+      dueDate: "2025-2-8",
+    },
+  ],
   filter: "all",
 };
 
@@ -26,6 +36,14 @@ const taskSlice = createSlice({
       const taskData = createTask(action.payload);
       state.tasks.push(taskData);
     },
+    toggleCompleteSate: (state, action: PayloadAction<string>) => {
+      state.tasks.forEach((task) =>
+        task.id === action.payload ? (task.isComplete = !task.isComplete) : task
+      );
+    },
+    deleteTask: (state, action: PayloadAction<string>) => {
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+    },
   },
 });
 
@@ -33,6 +51,6 @@ export const selectTasks = (state: RootState) => {
   return state.todo.tasks;
 };
 
-export const { addTask } = taskSlice.actions;
+export const { addTask, toggleCompleteSate, deleteTask } = taskSlice.actions;
 
 export default taskSlice.reducer;
